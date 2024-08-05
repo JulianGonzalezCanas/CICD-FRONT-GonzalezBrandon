@@ -8,8 +8,6 @@ RUN npm install
 
 COPY ./app .
 
-RUN npm ci
-
 RUN npm run build
 
 FROM nginx:alpine
