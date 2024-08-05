@@ -42,6 +42,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: ${{ github.repository }}/container
-          tags: latest
+          registry: ghcr.io
+
+      - name: Build
+        run: docker build -t ghcr.io/${{ github.repository }}/my-image:latest
