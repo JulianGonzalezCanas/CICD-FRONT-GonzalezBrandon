@@ -40,8 +40,8 @@ jobs:
       - name: docker
         uses: docker/build-push-action@v1
         with:
-          username: juliangonzalezcanas
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run : |
-          docker build -t ghcr.io/${{ github.repository }}:${{ github.ref_name }} .
-          docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          registry: docker.pkg.github.com
+          repository: ${{ github.repository }}/container
+          tags: latest
