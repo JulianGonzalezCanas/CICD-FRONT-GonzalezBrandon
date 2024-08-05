@@ -39,10 +39,13 @@ jobs:
       packages: write
       contents: read
 
-    steps: 
-      - uses: actions/checkout@v3
-      - name: Build and push the image
-        run: |
-          docker login --username ${{secrets.GITHUB_ACTOR}} --password ${{ secrets.PAT }} ghcr.io
-          docker build . --tag ghcr.io/juliangonzalezcanas/cicd-front-gonzalez-brandon:latest
-          docker push ghcr.io/juliangonzalezcanas/cicd-front-gonzalez-brandon:latest
+    steps:
+      - uses: actions/checkout@master
+      - name: docker
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.PAT }}
+          registry: docker.pkg.github.com
+          repository: ${{ github.repository }}/container
+          tags: latest
